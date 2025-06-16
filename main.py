@@ -37,6 +37,8 @@ def lower():
         guess -= int(guess / 2)  # Logic to decrease the guess
         currentNumber.config(text=f"Thinking about number: {guess}")
 
+# TODO: Improve higher and lower numbers and reset logic
+
 # Title
 title = Label(root, text="PyNumberWizard", font=("Ubuntu", 24), fg=fgc, bg=bgc)
 title.pack(pady=20, anchor="nw", padx=20)
@@ -77,7 +79,6 @@ instructions =  "Try to think of a whole number between 1 and 100 then press sta
 instructionsLabel = Label(root, text=instructions, font=("Ubuntu", 16), fg=fgc, bg=bgc)
 instructionsLabel.pack(pady=20, padx=20)
 
-# TODO: Start game and reset logic
 
 # Start the application
 if __name__ == "__main__":
