@@ -29,6 +29,9 @@ numberChoosingLabel.grid(pady=10, row=0, column=0, padx=10)
 numberEntry = Entry(instructionsFrame, font=("Ubuntu", 16), fg=fgc, bg="#2C3333", width=10)
 numberEntry.grid(pady=10, row=0, column=1, padx=10)
 
+# Button to submit the number
+submitBtn = Button(root, text="Submit", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=lambda: print("Number submitted:", numberEntry.get()))
+submitBtn.pack(pady=10)
 
 # Start the application
 if __name__ == "__main__":
