@@ -6,19 +6,29 @@ root.geometry("800x600")
 root.resizable(False, False)
 root.config(bg="#232A2F")
 
+# Docs and keys for each widget
+# print(widget.configure().keys())
+
 # Colors (to save time)
 bgc = "#232A2F"
 fgc = "#bfbfbf"
 
 # Title
 title = Label(root, text="PyNumberWizard", font=("Ubuntu", 24), fg=fgc, bg=bgc)
-title.pack()
+title.pack(pady=20, anchor="nw", padx=20)
 
-placeholder = Label(root, text="Placeholder label", font=("Ubuntu", 16), fg=fgc, bg=bgc)
-placeholder.place(x=100, y=400)
+# Frame for instructions
+instructionsFrame = Frame(root, bg=bgc)
+instructionsFrame.pack()
 
-another_placeholder = Label(root, text="Another placeholder label", font=("Ubuntu", 16), fg=fgc, bg=bgc)
-another_placeholder.pack()
+# Label for number selection
+numberChoosingLabel = Label(instructionsFrame, text="Choose your number!", font=("Ubuntu", 16), fg=fgc, bg=bgc)
+numberChoosingLabel.grid(pady=10, row=0, column=0, padx=10)
+
+# Entry for number selection
+numberEntry = Entry(instructionsFrame, font=("Ubuntu", 16), fg=fgc, bg="#2C3333", width=10)
+numberEntry.grid(pady=10, row=0, column=1, padx=10)
+
 
 # Start the application
 if __name__ == "__main__":
