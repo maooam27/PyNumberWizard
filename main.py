@@ -13,12 +13,29 @@ root.config(bg="#232A2F")
 bgc = "#232A2F"
 fgc = "#bfbfbf"
 
+# Some setup variables
+isGameActive = False
+
+guess = 50  # Starting guess for the game
 
 # Logic for the wizard
 def startWizard():
+    global isGameActive, guess, currentNumber
+    isGameActive = True
     currentNumber.grid(row=0, column=0)
+    currentNumber.config(text=f"Thinking about number: {guess}")  # Initial guess
 
+def higher():
+    global isGameActive, guess, currentNumber
+    if isGameActive:
+        guess += int(guess / 2)  # Logic to increase the guess
+        currentNumber.config(text=f"Thinking about number: {guess}")
 
+def lower():
+    global isGameActive, guess, currentNumber
+    if isGameActive:
+        guess -= int(guess / 2)  # Logic to decrease the guess
+        currentNumber.config(text=f"Thinking about number: {guess}")
 
 # Title
 title = Label(root, text="PyNumberWizard", font=("Ubuntu", 24), fg=fgc, bg=bgc)
@@ -35,10 +52,10 @@ currentNumber.grid(pady=10, padx=20, row=0, column=0)
 currentNumber.grid_forget()  # To make it hidden at the start of the game
 
 # Higher lower buttons
-higherButton = Button(instructionsFrame, text="Higher", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=None)
+higherButton = Button(instructionsFrame, text="Higher", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=higher)
 higherButton.grid(pady=10, row=1, column=0, padx=10)
 
-lowerButton = Button(instructionsFrame, text="Lower", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=None)
+lowerButton = Button(instructionsFrame, text="Lower", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=lower)
 lowerButton.grid(pady=10, row=1, column=1, padx=10)
 
 # Revealing the correct number
