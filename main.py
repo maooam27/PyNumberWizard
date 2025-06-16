@@ -17,6 +17,7 @@ fgc = "#bfbfbf"
 isGameActive = False
 
 guess = 50  # Starting guess for the game
+i = 1
 
 # Logic for the wizard
 def startWizard():
@@ -26,18 +27,26 @@ def startWizard():
     currentNumber.config(text=f"Thinking about number: {guess}")  # Initial guess
 
 def higher():
-    global isGameActive, guess, currentNumber
+    global isGameActive, guess, currentNumber, i
     if isGameActive:
-        guess += int(guess / 2)  # Logic to increase the guess
+        guess += int((guess) / (2 * i))  # Logic to increase the guess
         currentNumber.config(text=f"Thinking about number: {guess}")
+        i += 1
 
 def lower():
-    global isGameActive, guess, currentNumber
+    global isGameActive, guess, currentNumber, i
     if isGameActive:
-        guess -= int(guess / 2)  # Logic to decrease the guess
+        guess -= int((guess) / (2 * i))  # Logic to decrease the guess
         currentNumber.config(text=f"Thinking about number: {guess}")
+        i += 1
 
-# TODO: Improve higher and lower numbers and reset logic
+def showCelebration():
+    pass
+
+def resetGame():
+    pass
+
+# TODO: reset logic and celebration
 
 # Title
 title = Label(root, text="PyNumberWizard", font=("Ubuntu", 24), fg=fgc, bg=bgc)
@@ -61,11 +70,11 @@ lowerButton = Button(instructionsFrame, text="Lower", font=("Ubuntu", 16), fg=fg
 lowerButton.grid(pady=10, row=1, column=1, padx=10)
 
 # Revealing the correct number
-correctBtn = Button(root, text="Correct!", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=None)
+correctBtn = Button(root, text="Correct!", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=showCelebration)
 correctBtn.pack(pady=10)
 
 # Reset button to start over
-resetBtn = Button(root, text="Reset", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=None, width=6)
+resetBtn = Button(root, text="Reset", font=("Ubuntu", 16), fg=fgc, bg="#2C3333", command=resetGame, width=6)
 resetBtn.place(x=700, y=20)
 
 # Start button
