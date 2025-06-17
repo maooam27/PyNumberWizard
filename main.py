@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 root = Tk()
 root.title("PyNumberWizard")
@@ -17,7 +18,8 @@ fgc = "#bfbfbf"
 isGameActive = False
 
 guess = 50  # Starting guess for the game
-i = 1
+maxNumber = 100  # Maximum number for the game
+minNumber = 1  # Minimum number for the game
 
 # Logic for the wizard
 def startWizard():
@@ -27,24 +29,32 @@ def startWizard():
     currentNumber.config(text=f"Thinking about number: {guess}")  # Initial guess
 
 def higher():
-    global isGameActive, guess, currentNumber, i
+    global isGameActive, guess, currentNumber, maxNumber, minNumber
     if isGameActive:
-        guess += int((guess) / (2 * i))  # Logic to increase the guess
-        currentNumber.config(text=f"Thinking about number: {guess}")
-        i += 1
+        minNumber = guess + 1  # Update the minimum number
+        guess = (maxNumber + minNumber) // 2
+        currentNumber.config(text=f"Thinking about number: {guess}")  # Update guess label
 
 def lower():
-    global isGameActive, guess, currentNumber, i
+    global isGameActive, guess, currentNumber, maxNumber, minNumber
     if isGameActive:
-        guess -= int((guess) / (2 * i))  # Logic to decrease the guess
-        currentNumber.config(text=f"Thinking about number: {guess}")
-        i += 1
+        maxNumber = guess - 1  # Update the maximum number
+        guess = (maxNumber + minNumber) // 2
+        currentNumber.config(text=f"Thinking about number: {guess}")  # update guess label
 
 def showCelebration():
-    pass
+    if isGameActive:
+        celebration = messagebox.Message(root, message="I won, too smart :)", title="Celebrating", default=messagebox.OK)
+        celebration.show()
+        resetGame()
 
 def resetGame():
-    pass
+    global isGameActive, guess, currentNumber, maxNumber, minNumber
+    isGameActive = False
+    guess = 50
+    currentNumber.grid_forget()
+    maxNumber = 100
+    minNumber = 1
 
 # TODO: reset logic and celebration
 
